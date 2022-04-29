@@ -52,37 +52,33 @@ def subscribed(client, userdata, mid, granted_qos):
     print("Subscribed...")
 
 def recv_message(client, userdata, message):
-    print("Hello")
     print("Received: ", message.payload.decode("utf-8"))
     temp_data = dict()
     cmd = -1
  # TODO: Update the cmd to control 2 devices
-    global led_signal, fan_signal
+    global ledSignal, fanSignal
     try:
         jsonobj = json.loads(message.payload)
         print(jsonobj);
 
         if jsonobj['method'] == "setLED":
             temp_data['led'] = jsonobj['params']
-            led_signal = jsonobj['params']
+            ledSignal = jsonobj['params']
             client.publish('v1/devices/me/attributes',
                     json.dumps(temp_data), 1)
         if jsonobj['method'] == "setFAN":
             temp_data['fan'] = jsonobj['params']
-            fan_signal = jsonobj['params']
+            fanSignal = jsonobj['params']
             client.publish('v1/devices/me/attributes',
                     json.dumps(temp_data), 1)
 
-        print(f"led signal: {led_signal}, fan signal: {fan_signal}")
-
-
-        if led_signal and fan_signal:
+        if ledSignal and fanSignal:
             cmd = 0
-        if led_signal and not fan_signal:
+        if ledSignal and not fanSignal:
             cmd = 1
-        if not led_signal and fan_signal:
+        if not ledSignal and fanSignal:
             cmd = 2
-        if not led_signal and not fan_signal:
+        if not ledSignal and not fanSignal:
             cmd = 3
 
     except:
