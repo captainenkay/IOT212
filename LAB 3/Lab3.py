@@ -9,7 +9,9 @@ BROKER_ADDRESS = "demo.thingsboard.io"
 PORT = 1883
 mess = ""
 
-THINGS_BOARD_ACCESS_TOKEN = "" 
+
+
+THINGS_BOARD_ACCESS_TOKEN = "7c37e2ZNhzPFA99lWnVC" 
 bbc_port = "COM3"
 
 if len(bbc_port) > 0:
