@@ -10,9 +10,7 @@ PORT = 1883
 mess = ""
 
 THINGS_BOARD_ACCESS_TOKEN = "" 
-####### CHUA THAY TOKEN
-bbc_port = ""
-####### CHUA THAY PORT
+bbc_port = "COM3"
 
 if len(bbc_port) > 0:
     ser = serial.Serial(port=bbc_port, baudrate=115200)
@@ -112,4 +110,4 @@ while True:
     if len(bbc_port) >  0:
         readSerial()
 
-    time.sleep(1)
+    time.sleep(0.5)
